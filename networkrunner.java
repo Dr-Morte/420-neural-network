@@ -14,22 +14,8 @@ class networkrunner{
 		
 		//Hard coded arrays for testing purposes
 		double [] ina = {0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1};
-		double [] inb = {1, 1, 1, 1, 0,
-			 			 0, 1, 0, 0, 1,
-					     0, 1, 0, 0, 1, 
-					     0, 1, 1, 1, 0, 
-						 0, 1, 0, 0, 1, 
-					     0, 1, 0, 0, 1, 
-						 1, 1, 1, 1, 0};
-						 
-		double [] inc = {0, 1, 1, 1, 0,
-				 		 1, 0, 0, 0, 1, 
-					  	 1, 0, 0, 0, 0,
-					     1, 0, 0, 0, 0, 
-					     1, 0, 0, 0, 0, 
-						 1, 0, 0, 0, 1,
-						 0, 1, 1, 1, 0};
-						 
+		double [] inb = {1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0};				 
+		double [] inc = {0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0};				 
 		double [] ind = {1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0};
 		double [] ine = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1};
 		double [] inf = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0};
@@ -94,11 +80,13 @@ class networkrunner{
 					}
 			
 				}
+					//evaluates the user input
 					hal.post_trained_forward(userIN);
 					hal.printoutput("user input ");
 			}
 			
 		}	
+		
 			
 			//finds the noise tolerance for a given letter
 			hal.noise(ina,0,"a");
@@ -127,62 +115,6 @@ class networkrunner{
 			hal.noise(inx,23,"x");
 			hal.noise(iny,24,"y");
 			hal.noise(inz,25,"z");
-			
-			
-			//TRAINING DATA FOR TESTING ACCURACY OF INDIVIDUAL LETTERS
-			/*hal.post_trained_forward(ina);
-			hal.printoutput("A");
-			hal.post_trained_forward(inb);
-			hal.printoutput("b");
-			hal.post_trained_forward(inc);
-			hal.printoutput("c");
-			hal.post_trained_forward(ind);
-			hal.printoutput("d");
-			hal.post_trained_forward(ine);
-			hal.printoutput("e");
-			hal.post_trained_forward(inf);
-			hal.printoutput("f");
-			hal.post_trained_forward(ing);
-			hal.printoutput("g");
-			hal.post_trained_forward(inh);
-			hal.printoutput("h");
-			hal.post_trained_forward(ini);
-			hal.printoutput("i");
-			hal.post_trained_forward(inj);
-			hal.printoutput("j");
-			hal.post_trained_forward(ink);
-			hal.printoutput("k");
-			hal.post_trained_forward(inl);
-			hal.printoutput("l");
-			hal.post_trained_forward(inm);
-			hal.printoutput("m");
-			hal.post_trained_forward(inn);
-			hal.printoutput("n");
-			hal.post_trained_forward(ino);
-			hal.printoutput("o");
-			hal.post_trained_forward(inp);
-			hal.printoutput("p");
-			hal.post_trained_forward(inq);
-			hal.printoutput("q");
-			hal.post_trained_forward(inr);
-			hal.printoutput("r");
-			hal.post_trained_forward(ins);
-			hal.printoutput("s");
-			hal.post_trained_forward(inT);
-			hal.printoutput("t");
-			hal.post_trained_forward(inu);
-			hal.printoutput("u");
-			hal.post_trained_forward(inv);
-			hal.printoutput("v");
-			hal.post_trained_forward(inw);
-			hal.printoutput("w");
-			hal.post_trained_forward(inx);
-			hal.printoutput("x");
-			hal.post_trained_forward(iny);
-			hal.printoutput("y");
-			hal.post_trained_forward(inz);
-			hal.printoutput("z");*/
-			
 			
 	}
 }

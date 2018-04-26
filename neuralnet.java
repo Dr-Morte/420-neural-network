@@ -54,8 +54,6 @@ class neuralnet{
 						{1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0},
 						{1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1}};
 	
-	//Code to rotate input if needed
-	//double[][] rotated_input = rotate(input);
 				   
 	//Training output Data
 	double[][] output = {{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},	
@@ -111,10 +109,6 @@ class neuralnet{
 		
 		//applies activation to output layer
 		yhat = sig_activation(z3);
-		
-		
-		//System.out.print("This is yhat: \n\n");
-		//printmatrix(yhat);
 	}
 	
 	//This is the backward propagation for training
@@ -144,33 +138,18 @@ class neuralnet{
 		}
 	}
 	
-	
 	//function to train the neural net. Forward and backward.
 	public void learn(){
-		//outputs accuracy to output.txt. 
-		try{
-			BufferedWriter wr = new BufferedWriter(new FileWriter("output.txt"));
-			System.out.println("\n\nNeural Network is Learning.\n\nThis should take roughly 10 seconds...\n");
+		System.out.println("\n\nNeural Network is Learning.\n\nThis should take roughly 10 seconds...\n");
 		 
-		 
-			//CHART FOR LEARNING RATE OF 1.5
-		 
-			// CHART FOR LEARNING RATE OF 0.01
-			//1,000   iterations is about  20-70% accurate Takes roughly 1.5 seconds
-			//10,000  iterations is about     96% accurate Takes roughly 10 seconds
-			for(int i = 0; i < 400; i++){
-				for(int j = 0; j<10;j++){
-					forward();
-					backward();
-				}	
-				System.out.println("Accuracy for iteration " + i + " is : " + accuracy() + " \n\n");
-				wr.write(accuracy() + "\n");	
-			}
-		    wr.close();
+	 	//Trains the network
+		for(int i = 0; i < 400; i++){
+			for(int j = 0; j<10;j++){
+				forward();
+				backward();
+			}	
+			System.out.println("Accuracy for iteration " + i + " is : " + accuracy() + " \n\n");	
 		}
-		catch(IOException ioe){
-			System.out.println(ioe);
-		}	
 	}
 	
 	//forward propagation for post-trained network
@@ -191,8 +170,6 @@ class neuralnet{
 		//applies activation to output layer
 		post_output = sig_activation(z3);
 	}
-	
-	//Below are the list of helper functions I made
 	
 	//function to calculate noise tolerance
 	public void noise(double[] in, int num, String let){
@@ -243,6 +220,8 @@ class neuralnet{
 		System.out.println("# of tabulations for " + let + ": " + tab);
 	}
 	
+	//BELOW ARE THE HELPER FUNCTIONS I MADE FOR THIS PROJECT
+	
 	//function to calculate how accurate the Network is after X iterations
 	public double accuracy(){
 		
@@ -287,17 +266,6 @@ class neuralnet{
 		for(int i = 0; i < in.length;i++){
 			for(int j = 0; j < in[i].length; j++){
 				out[j][i] = in[i][j];
-			}
-		}
-		return out;
-	}
-	
-	//negates a matrix
-	private double[][] neg(double[][]in){
-		double[][] out = new double[in.length][in[0].length];
-		for(int i = 0; i < in.length;i++){
-			for(int j = 0; j < in[i].length;j++){
-				out[i][j] = -in[i][j];
 			}
 		}
 		return out;
@@ -373,13 +341,6 @@ class neuralnet{
 		}
 	}
 	
-	//helper function to convert matricies to arrays
-	private void unclone(double[][] in, double[] out){
-		for(int i = 0; i < in.length; i++){
-			out[i] = in[0][i];
-		}
-	}
-	
 	//helper function for dot product
 	private double[][] dotp(double[][]in, double[][]w){
 		double[][] out = new double[in.length][w[0].length];
@@ -408,52 +369,6 @@ class neuralnet{
 			System.out.print("]\n");
 		}
 		System.out.println("\n\n");
-	}
-	
-	//rotates the input 90 degrees so it aligns with input from piazza
-	private double[][] rotate(double[][] in){
-		double[][] out = new double[in.length][in[0].length];
-		double[] temp = new double[in[0].length];
-		double[][] temp2 = new double[7][5];
-		double[][] temp3 = new double[5][7];
-		int index = 0;
-		
-		//for every row
-		for(int i = 0; i < in.length; i++){
-			
-			//put row into array to become matrix
-			for(int j=0; j<in[0].length; j++){
-				temp[j] = in[i][j];
-			}
-			index = 0;
-			//put array into matrix
-			for(int j=0; j<7; j++){
-				for(int k=0; k<5;k++){
-					temp2[j][k] = temp[index];
-					index++;
-				}
-			}
-			//rotate matrix
-			for(int j=0; j<5; j++){
-				for(int k=0; k<7;k++){
-					temp3[j][k] = temp2[6-k][j];
-					index++;
-				}
-			}
-			index = 0;
-			//put matrix back into array
-			for(int j=0; j<5; j++){
-				for(int k=0; k<7;k++){
-					temp[index] = temp3[j][k];
-					index++;
-				}
-			}
-			//put array into output matrix
-			for(int j = 0; j <out[0].length;j++){
-				out[i][j] = temp[j];
-			}
-		}
-		return out;
 	}
 	
 	//prints the output for letter 
